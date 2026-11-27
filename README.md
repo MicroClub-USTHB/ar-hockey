@@ -1,16 +1,46 @@
-﻿# HOCKEY-AR â€” Webcam Battle
+<p align="center">
+  <img src="./assets/banner.svg" alt="HOCKEY-AR by Micro Club" width="1000" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/MicroClub-USTHB/ar-hockey/stargazers"><img src="https://img.shields.io/github/stars/MicroClub-USTHB/ar-hockey?style=flat&labelColor=0b0b10" alt="stars" /></a>
+  <a href="https://github.com/MicroClub-USTHB/ar-hockey/issues"><img src="https://img.shields.io/github/issues/MicroClub-USTHB/ar-hockey?labelColor=0b0b10" alt="issues" /></a>
+  <a href="https://github.com/MicroClub-USTHB/ar-hockey/commits/main"><img src="https://img.shields.io/github/last-commit/MicroClub-USTHB/ar-hockey?labelColor=0b0b10" alt="last commit" /></a>
+  <img src="https://img.shields.io/badge/input-webcam%20hand%20tracking-00e5ff?labelColor=0b0b10" alt="webcam hand tracking" />
+  <a href="https://github.com/MicroClub-USTHB"><img src="https://img.shields.io/badge/by-Micro%20Club%20USTHB-0b0b10?style=flat" alt="Micro Club USTHB" /></a>
+</p>
+
+<p align="center"><a href="#screenshots">Screenshots</a> · <a href="#1-quick-start">Quick start</a> · <a href="#2-how-to-play">How to play</a> · <a href="#4-in-game-settings">Settings</a> · <a href="#6-troubleshooting">Troubleshooting</a> · <a href="#8-deployment-vercel">Deploy</a></p>
+
+---
+
+## HOCKEY-AR — Webcam Battle
 
 A two-player air hockey game for one webcam: each player moves a hand in
 front of the camera, and MediaPipe Hands tracks it as the paddle. First to
 **7 points** wins.
 
-No backend, no build step, no audio assets â€” plain HTML + CSS + JavaScript
+No backend, no build step, no audio assets — plain HTML + CSS + JavaScript
 running 100% locally in your browser. Nothing from the webcam is uploaded;
 hand tracking happens entirely on your machine.
 
-![Controls](https://img.shields.io/badge/input-webcam%20hand%20tracking-00e5ff)
 
 ---
+
+## Screenshots
+
+<table>
+<tr>
+<td width="50%"><img src="./assets/screenshots/menu.jpg" alt="Main menu" /></td>
+<td width="50%"><img src="./assets/screenshots/gameplay.jpg" alt="A match in progress" /></td>
+</tr>
+<tr>
+<td align="center"><sub>Main menu</sub></td>
+<td align="center"><sub>A match: neon table, puck trail, the AI paddle on the right</sub></td>
+</tr>
+</table>
+
+<sub>Captured from the running game in Chrome with a simulated camera, so no hands are being tracked: the gameplay frame comes from a local run with calibration skipped. The "show your hands" prompt appears when no hand is in view.</sub>
 
 ## 1. Quick start
 
@@ -22,11 +52,11 @@ or HTTPS (browsers block `getUserMedia` on `file://` URLs).
 
 # Python 3 (usually preinstalled on macOS/Linux)
 python -m http.server 8000
-# â†’ open http://localhost:8000
+# → open http://localhost:8000
 
 # or Node
 npx serve .
-# â†’ open the URL it prints (http://localhost:3000 by default)
+# → open the URL it prints (http://localhost:3000 by default)
 ```
 
 Then open the menu and pick **PLAY (2 PLAYERS)** (or **SOLO VS AI**) and
@@ -37,30 +67,30 @@ Then open the menu and pick **PLAY (2 PLAYERS)** (or **SOLO VS AI**) and
   (e.g. via `npx serve` behind a tunnel, or any static host like GitHub
   Pages / Netlify / Vercel). Plain `http://<lan-ip>` will not get camera
   permission on phones.
-- If the CDN scripts load slowly the first time, wait a few seconds â€” the
+- If the CDN scripts load slowly the first time, wait a few seconds — the
   hand-tracking model files are downloaded once and then cached.
 
 ## 2. How to play
 
-1. **Start** â†’ the browser asks for camera permission.
-2. **Calibration** â†’ both players show a hand to the camera. Each chip
+1. **Start** → the browser asks for camera permission.
+2. **Calibration** → both players show a hand to the camera. Each chip
    ("Player 1 Hand" / "Player 2 Hand") lights up green when the hand is
    detected. ~1s "Get Ready!" and the match begins.
-3. **Control** â€” the camera feed is split into two halves (mirrored, so it
+3. **Control** — the camera feed is split into two halves (mirrored, so it
    behaves like a real mirror):
    - **Left/Right orientation (default):** the hand in the *left half* of
      the video controls Player 1 (cyan, defends the left goal); the hand in
      the *right half* controls Player 2 (magenta, right goal).
-   - **Top/Bottom orientation:** upper half of the video â†’ Player 2 (top of
-     the table), lower half â†’ Player 1 (bottom, classic mobile layout).
+   - **Top/Bottom orientation:** upper half of the video → Player 2 (top of
+     the table), lower half → Player 1 (bottom, classic mobile layout).
    - A small colored ring shows what the camera sees for each hand; the
      paddle follows your palm smoothly, but never leaves its own half.
-4. **Hit the puck** by swinging your hand into it â€” faster swings transfer
+4. **Hit the puck** by swinging your hand into it — faster swings transfer
    more momentum (that's the fun part).
-5. **Scoring** â€” push the puck fully past the opponent's goal line. A
+5. **Scoring** — push the puck fully past the opponent's goal line. A
    celebration plays, then the puck re-serves toward the player who was
    scored on.
-6. **Win** â€” first player to **7** takes the match. Hit *Play again* for a
+6. **Win** — first player to **7** takes the match. Hit *Play again* for a
    rematch or *Main menu* to restart from the title screen.
 
 **Fairness & safety nets**
@@ -81,8 +111,8 @@ MediaPipe is quite robust, but you can dramatically improve stability:
 - **Background:** a plain, contrasting background helps more than anything.
   A solid wall, or anything that isn't skin-tone, works best. Patterned
   carpets and cluttered shelves produce ghost hands.
-- **Framing:** keep both hands well inside the camera view â€” hands at the
-  edge of the frame are easily dropped. Sit/stand about **0.5â€“1.5 m** from
+- **Framing:** keep both hands well inside the camera view — hands at the
+  edge of the frame are easily dropped. Sit/stand about **0.5–1.5 m** from
   the webcam and angle it so both players' hands fit in frame.
 - **Posture:** face the camera with an open palm; don't hold the hand
   sideways edge-on for long.
@@ -94,13 +124,13 @@ MediaPipe is quite robust, but you can dramatically improve stability:
 
 ## 4. In-game settings
 
-Open the panel via the **pause button (II)** â†’ *Settings*:
+Open the panel via the **pause button (II)** → *Settings*:
 
 | Option | What it does |
 |---|---|
 | Table orientation | **Left/Right** (landscape webcams) or **Top/Bottom** (mobile-style). Switching re-serves the puck. |
 | Smoothing strength | 0 = raw/sticky-fast, 1 = very smooth/laggy. ~0.5 is a good default. |
-| Puck speed | Slow / Normal / Fast â€” scales serve speed and max speed. |
+| Puck speed | Slow / Normal / Fast — scales serve speed and max speed. |
 | Camera background | Show/hide the mirrored webcam feed behind the table. |
 | Tracking markers | Show/hide the position ring drawn on each detected hand. |
 | Debug mode | Small FPS counter in the corner. |
@@ -118,31 +148,31 @@ Every gameplay constant lives in this one frozen object. Most useful knobs:
 | `PUCK_FRICTION` | 0.9992 | Velocity kept per physics step (1/120 s). Lower = gluey table, higher = long rallies. |
 | `PUCK_WALL_RESTITUTION` | 0.86 | Energy kept on wall bounces (1 = perfectly elastic). |
 | `PUCK_MAX_SPEED` | 2200 | Hard cap, px/s in table space. Raise for chaos. |
-| `PUCK_SERVE_SPEED_BASE` | 480 | Serve speed (Ã— difficulty multiplier). |
-| `PADDLE_MAX_SPEED` | 2500 | Paddle speed cap â€” tracking glitches shield. |
+| `PUCK_SERVE_SPEED_BASE` | 480 | Serve speed (× difficulty multiplier). |
+| `PADDLE_MAX_SPEED` | 2500 | Paddle speed cap — tracking glitches shield. |
 | `PADDLE_MAX_HIT_BOOST` | 900 | Extra kick on hard swings. |
-| `FIXED_DT` | 1/120 | Physics timestep. Keep â‰¤ 1/60. |
+| `FIXED_DT` | 1/120 | Physics timestep. Keep ≤ 1/60. |
 | `GOAL_WIDTH` | 240 | Goal mouth width (larger = easier scoring). |
-| `PUCK_RADIUS` / `PADDLE_RADIUS` | 22 / 36 | Sizes in table pixels (table is 1280Ã—720 or 720Ã—1280). |
+| `PUCK_RADIUS` / `PADDLE_RADIUS` | 22 / 36 | Sizes in table pixels (table is 1280×720 or 720×1280). |
 | `PUCK_STUCK_TIME` / `PUCK_NUDGE_SPEED` | 1.6 s / 260 | Anti-stuck: how long a slow puck is tolerated before the nudge, and how hard it's nudged. |
 | `DEFAULT_SMOOTHING` | 0.5 | Same as the settings slider. |
 | `MISSING_HAND_TIMEOUT` | 3000 | ms of lost hands before auto-pause. |
 | `CAM_BG_OPACITY` | 0.15 | Visibility of the camera feed behind the table (AR look). |
-| `CAMERA_WIDTH/HEIGHT` | 1280Ã—720 | Requested camera resolution. |
+| `CAMERA_WIDTH/HEIGHT` | 1280×720 | Requested camera resolution. |
 
 `SCORE_RESET_DELAY`, `TRACK_*`, `HINT_SHOW_DELAY`, `CORNER_RADIUS` and the
-`*_TOGGLES_*` defaults are also tweakable â€” each is commented in the file.
+`*_TOGGLES_*` defaults are also tweakable — each is commented in the file.
 
 ## 6. Troubleshooting
 
 | Problem | Fix |
 |---|---|
-| "Camera error: NotAllowedError" | Permission denied. Click the padlock icon in the address bar â†’ allow camera â†’ reload. |
+| "Camera error: NotAllowedError" | Permission denied. Click the padlock icon in the address bar → allow camera → reload. |
 | Only one chip lights up in calibration | Both players must keep hands in frame; check lighting/contrast. You'll wait until both are seen. |
 | Game keeps auto-pausing | Camera dropped out or both hands left the frame. Resume once hands are visible again. |
 | Paddle feels laggy | Lower *Smoothing strength* in settings. |
 | Paddle twitches | Raise smoothing slightly; improve lighting/background. |
-| Hands swap players | One player's hand crossed the center line â€” the split assigns by position. Keep hands apart. |
+| Hands swap players | One player's hand crossed the center line — the split assigns by position. Keep hands apart. |
 | No sound | Sound starts after your first click (browser policy); check the Sound Effects toggle. |
 | Black camera / device busy | Another app has the webcam; close it and reload. |
 
@@ -153,7 +183,7 @@ index.html          layout, MediaPipe CDN, overlays
 style.css           neon arcade theme
 js/config.js        every tuning constant (start here)
 js/audio.js         Web Audio synth SFX (no files)
-js/tracking.js      MediaPipe Hands â†’ paddle targets (/s velocity)
+js/tracking.js      MediaPipe Hands → paddle targets (/s velocity)
 js/physics.js       fixed-timestep physics, collisions, goals, anti-stuck
 js/renderer.js      camera feed, neon table, paddles, puck, effects, particles
 js/game.js          state machine, HUD, scoring, settings
